@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employees</title>
+</head>
+
+<body>
+
+<h2>Employees</h2>
+
+<table border="1" id="employeeTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<hr>
+
+<h3 id="formTitle">Add Employee</h3>
+
+<form id="addForm">
+  <input type="text" id="name" placeholder="Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="text" id="department" placeholder="Department" required>
+  <input type="text" id="gender" placeholder="Gender" required>
+  <input type="text" id="status" placeholder="Status" required>
+
+  <button type="submit">Save</button>
+  <button type="button" onclick="cancelEdit()">Cancel</button>
+</form>
+
+<script>
+
+let currentEditId = null;
+
+/* -------- Load Employees ---------- */
+function loadEmployees() {
+  fetch("http://localhost:8080/api/employees?sort=id,desc&page=0&size=20")
+    .then(res => res.json())
+    .then(data => {
+
+      const rows = data.data.content.map(emp => `
+        <tr>
+          <td>${emp.id}</td>
+          <td>${emp.name}</td>
+          <td>${emp.email}</td>
+          <td>${emp.department}</td>
+          <td>${emp.status}</td>
+          <td>
+            <button onclick='editEmployee(${JSON.stringify(emp)})'>Edit</button>
+            <button onclick="deleteEmployee(${emp.id})">
+              Delete
+            </button>
+          </td>
+        </tr>
+      `).join("");
+
+      document.querySelector("#employeeTable tbody").innerHTML = rows;
+    });
+}
+
+loadEmployees();
+
+/* -------- Add / Update Employee ---------- */
+document.getElementById("addForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const employee = {
+    name: name.value,
+    email: email.value,
+    department: department.value,
+    gender: gender.value,
+    status: status.value
+  };
+
+  const method = currentEditId ? "PUT" : "POST";
+  const url = currentEditId
+      ? `http://localhost:8080/api/employees/${currentEditId}`
+      : "http://localhost:8080/api/employees";
+
+  fetch(url, {
+    method: method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(employee)
+  })
+  .then(() => {
+    cancelEdit();
+    loadEmployees();
+  });
+});
+
+function cancelEdit() {
+  currentEditId = null;
+  formTitle.innerText = "Add Employee";
+  addForm.reset();
+}
+
+/* -------- Edit Mode ---------- */
+function editEmployee(emp) {
+  currentEditId = emp.id;
+  formTitle.innerText = "Edit Employee";
+
+  document.getElementById("name").value = emp.name ?? "";
+  document.getElementById("email").value = emp.email ?? "";
+  document.getElementById("department").value = emp.department ?? "";
+  document.getElementById("gender").value = emp.gender ?? "";
+  document.getElementById("status").value = emp.status ?? "";
+}
+
+
+/* -------- Cancel Edit ---------- */
+function cancelEdit() {
+  currentEditId = null;
+  formTitle.innerText = "Add Employee";
+  addForm.reset();
+}
+
+/* -------- Delete Employee ---------- */
+function deleteEmployee(id) {
+  if (!confirm("Delete this employee?")) return;
+
+  fetch(`http://localhost:8080/api/employees/${id}`, {
+    method: "DELETE"
+  })
+  .then(() => loadEmployees());
+}
+
+</script>
+
+</body>
+</html>

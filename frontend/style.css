@@ -1,0 +1,6 @@
+body { font-family: Arial; padding: 20px; }
+table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+th, td { border: 1px solid #ddd; padding: 8px; }
+th { background: #222; color: #fff; }
+button { padding: 6px 10px; margin-right: 5px; cursor: pointer; }
+form input, select { padding: 6px; width: 250px; margin-bottom: 8px; }
