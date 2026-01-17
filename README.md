@@ -11,7 +11,7 @@ This project supports secure CRUD operations, pagination, and modern REST standa
 - Global Exception Handling
 - DTO Mapping (Request & Response)
 - Secure REST APIs using Spring Security
-- MySQL Database Integration
+- Postgre SQL Database Integration
 - Clean Layered Architecture (Controller, Service, Repository)
 
 ## Tech Stack
@@ -19,7 +19,7 @@ This project supports secure CRUD operations, pagination, and modern REST standa
 - Spring Boot
 - Spring Security + JWT
 - Spring Data JPA (Hibernate)
-- MySQL
+- PostGre SQL
 - Maven
 - Lombok
 - IntelliJ IDEA
@@ -40,8 +40,8 @@ employeeapi
 1. Clone the repository:
 git clone https://github.com/yourusername/EmployeeAPI.git
 
-2.Configure MySQL in application.properties:
-spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
+2.Configure postgresql in application.properties:
+spring.datasource.url=.
 spring.datasource.username=root
 spring.datasource.password=yourpassword
 
