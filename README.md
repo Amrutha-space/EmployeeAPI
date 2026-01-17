@@ -67,5 +67,5 @@ Full Stack | Java | Spring Boot | DSA | Web Development
 
 
 📄 License
-This project is open-source and available under the MIT License.
+This project is open-source and available to collaboration under the MIT License.
 
