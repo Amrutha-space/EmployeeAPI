@@ -1,71 +1,99 @@
-# EmployeeAPI
+--- Employee Management REST API
+A secure, production-ready Employee Management System built using **Spring Boot**, **JWT Authentication**, and **PostgreSQL**, deployed on **Render Cloud** with Docker.
 
-A full-stack Employee Management REST API built using Spring Boot, JWT authentication, and role-based access control. 
-This project supports secure CRUD operations, pagination, and modern REST standards, designed for learning and production-ready backend architecture.
+---
+## 🚀 Live Demo
+Base URL:
+[https://employeeapi-1-ub9x.onrender.com/](https://employeeapi-1-ub9x.onrender.com/)
 
-## Features
-- User Authentication with JWT
-- Role-Based Authorization (ADMIN / USER)
-- Create, Read, Update, Delete (CRUD) Employees
-- Pagination & Sorting
-- Global Exception Handling
-- DTO Mapping (Request & Response)
-- Secure REST APIs using Spring Security
-- Postgre SQL Database Integration
-- Clean Layered Architecture (Controller, Service, Repository)
+**Swagger API Docs:**
+[https://employeeapi-1-ub9x.onrender.com/swagger-ui/index.html](https://employeeapi-1-ub9x.onrender.com/swagger-ui/index.html)
 
-## Tech Stack
-- Java 17+
-- Spring Boot
-- Spring Security + JWT
-- Spring Data JPA (Hibernate)
-- PostGre SQL
-- Maven
-- Lombok
-- IntelliJ IDEA
-- Git & GitHub
+## 📌 Features
 
-## Project Structure
-employeeapi
-┣ controller
-┣ service
-┣ repository
-┣ dto
-┣ security
-┣ exception
-┣ response
-┗ config
+*  JWT Authentication & Authorization
+*  Role-based Access Control (Admin / User)
+*  Employee CRUD Operations
+*  Pagination & Sorting
+*  PostgreSQL Cloud Database
+*  Dockerized Application
+*  Deployed on Render
+*  Swagger API Documentation
+*  pring Security with BCrypt Password Encoding
 
-## Setup & Run Locally
-1. Clone the repository:
-git clone https://github.com/yourusername/EmployeeAPI.git
+## 🛠 Tech Stack
+Backend:
+* Java 17
+* Spring Boot 3
+* Spring Security
+* Spring Data JPA
+* JWT (JSON Web Token)
 
-2.Configure postgresql in application.properties:
-spring.datasource.url=.
-spring.datasource.username=root
-spring.datasource.password=yourpassword
+Database:
+* PostgreSQL (Render Cloud)
 
-3.Run the application:
+DevOps & Tools:
+* Docker
+* Maven
+* Render Cloud
+* Swagger OpenAPI
+
+
+## 🔑 Authentication APIs
+| Method | Endpoint             | Description           |
+| ------ | -------------------- | --------------------- |
+| POST   | `/api/auth/register` | Register new user     |
+| POST   | `/api/auth/login`    | Login & get JWT token |
+
+## 👨‍💼 Employee APIs
+
+| Method | Endpoint              | Description        |
+| ------ | --------------------- | ------------------ |
+| GET    | `/api/employees`      | Get all employees  |
+| GET    | `/api/employees/{id}` | Get employee by ID |
+| POST   | `/api/employees`      | Create employee    |
+| PUT    | `/api/employees/{id}` | Update employee    |
+| DELETE | `/api/employees/{id}` | Delete employee    |
+
+⚙ Local Setup
+
+```bash
+git clone https://github.com/Amrutha-space/EmployeeAPI.git
+cd EmployeeAPI
+mvn clean install
 mvn spring-boot:run
+```
 
-4.Access API:
-http://localhost:8080
+## 🐳 Docker Run
 
-API Endpoints
-Method	Endpoint	Description
-POST	/api/auth/login	User login
-POST	/api/employees	Add employee (ADMIN)
-GET	/api/employees	Get all employees
-PUT	/api/employees/{id}	Update employee
-DELETE	/api/employees/{id}	Delete employee
+```bash
+docker build -t employeeapi .
+docker run -p 8080:8080 employeeapi
+```
 
-## 👨‍💻 Author
-Amrutha A
-Final Year CSE | Aspiring Software Development Engineer
-Preparing for SDE Internship 
-Full Stack | Java | Spring Boot | DSA | Web Development
+## 📂 Project Structure
 
+```
+com.example.employeeapi
+ ├── controller
+ ├── service
+ ├── repository
+ ├── security
+ ├── entity
+ └── config
+```
 
-📄 License
-This project is open-source and available to collaboration under the MIT License.
+## 🎯 Learning Outcomes
 
+* Secure REST API design
+* JWT implementation
+* Spring Security filters
+* Cloud deployment with Docker
+* PostgreSQL production configuration
+* Role-based authorization
+* Swagger documentation
+* DevOps deployment workflow
+* 
+## ⭐ If you like this project
+
+Please give a ⭐ on GitHub and feel free to fork and contribute.
