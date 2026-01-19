@@ -93,7 +93,7 @@ com.example.employeeapi
 * Role-based authorization
 * Swagger documentation
 * DevOps deployment workflow
-* 
+
 ## ⭐ If you like this project
 
 Please give a ⭐ on GitHub and feel free to fork and contribute.
